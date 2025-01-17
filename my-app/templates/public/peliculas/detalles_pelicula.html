@@ -1,0 +1,112 @@
+{% extends 'public/base_cpanel.html' %}
+<!-- Cambiando el título -->
+{% block title %}Crud con Python 🐍 | Registrar Película{% endblock %}
+<!---->
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+<!-- Inicio del bloque -->
+{% block body %}
+<!---->
+{% if (detalle_pelicula|length) %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">
+        <a href="/lista-de-peliculas">
+          <i class="bi bi-arrow-left-circle"></i>
+        </a>
+        INFORMACIÓN DE LA PELÍCULA
+      </h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="titulo_pelicula" class="form-label">
+              Título de la película
+            </label>
+            <br />
+            {{ detalle_pelicula.titulo_pelicula }}
+          </div>
+          <div class="col-md-6">
+            <label for="categoria_pelicula" class="form-label">
+              Categoría de la película
+            </label>
+            <br />
+            {{ detalle_pelicula.categoria_pelicula }}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="ano_estreno" class="form-label">
+              Año de estreno
+            </label>
+            <br />
+            {{ detalle_pelicula.ano_estreno }}
+          </div>
+          <div class="col-md-6">
+            <label for="duracion_minutos" class="form-label">
+              Duración (en minutos)
+            </label>
+            <br />
+            {{ detalle_pelicula.duracion_minutos }} minutos
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="descripcion" class="form-label">
+              Descripción de la película
+            </label>
+            <br />
+            {{ detalle_pelicula.descripcion }}
+          </div>
+          <div class="col-md-6">
+            <label for="director" class="form-label">
+              Director de la película
+            </label>
+            <br />
+            {{ detalle_pelicula.director }}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="presupuesto" class="form-label">
+              Presupuesto de la película
+            </label>
+            <br />
+            $ {{
+            '{:,.0f}'.format(detalle_pelicula.presupuesto).replace(',',
+            '.') }}
+          </div>
+          <div class="col-md-6">
+            <label for="" class="form-label"> PÓSTER DE LA PELÍCULA </label>
+            <br />
+            <img
+              style="width: 200px"
+              src="/static/posters_peliculas/{{ detalle_pelicula.poster_pelicula }}"
+              alt="poster-pelicula" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<h2 class="text-center">
+  No existe la Película 😭
+  <hr />
+</h2>
+{% endif %}
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% for pelicula in dataBusqueda %}
+<tr id="pelicula_{{ pelicula.id_pelicula }}">
+  <td>{{ loop.index }}</td>
+  <td>{{ pelicula.titulo_pelicula }}</td>
+  <td>{{ pelicula.categoria_pelicula }}</td>
+  <td>{{ pelicula.ano_estreno }}</td>
+  <td>{{ pelicula.duracion_minutos }} min</td>
+  <td>$ {{ '{:,.0f}'.format(pelicula.presupuesto or 0).replace(',', '.')}}</td>
+  <td>
+    <a
+      href="/detalles-pelicula/{{ pelicula.id_pelicula }}"
+      title="Ver detalles"
+      type="button"
+      class="btn btn-info btn-sm"
+      data-bs-toggle="tooltip"
+      data-bs-offset="0,4"
+      data-bs-placement="top"
+      data-bs-html="true"
+      title="<span>Ver detalles</span>">
+      <i class="bi bi-eye"></i>
+      Ver detalles
+    </a>
+    <a
+      href="{{ url_for('viewEditarPelicula', id = pelicula.id_pelicula) }}"
+      class="btn btn-success btn-sm"
+      tooltip="Actualizar Registro">
+      <i class="bi bi-arrow-clockwise"></i>
+      Actualizar
+    </a>
+    <a
+      href="#"
+      onclick="eliminarPelicula('{{ pelicula.id_pelicula }}');"
+      class="btn btn-danger btn-sm"
+      data-bs-toggle="tooltip"
+      data-bs-offset="0,4"
+      data-bs-placement="top"
+      data-bs-html="true"
+      title="<span>Eliminar película {{ pelicula.titulo_pelicula }}</span>">
+      <i class="bi bi-trash3"></i>
+      Eliminar
+    </a>
+  </td>
+</tr>
+{% endfor %}
+

@@ -1,0 +1,151 @@
+{% extends 'public/base_cpanel.html' %}
+<!-- Cambiando el título -->
+{% block title %}Crud con Python 🐍 | Registrar Película{% endblock %}
+<!---->
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+<!-- Inicio del bloque -->
+{% block body %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">REGISTRAR NUEVA PELÍCULA</h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <form
+        class="form-horizontal mx-auto"
+        method="POST"
+        action="/form-registrar-pelicula"
+        autocomplete="off"
+        enctype="multipart/form-data">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="titulo_pelicula" class="form-label">
+                Título de la película
+              </label>
+              <input
+                type="text"
+                name="titulo_pelicula"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="categoria_pelicula" class="form-label">
+                Categoría de la película
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="categoria_pelicula"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="ano_estreno" class="form-label">
+                Año de estreno
+              </label>
+              <input
+                class="form-control"
+                type="number"
+                name="ano_estreno"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="duracion_minutos" class="form-label">
+                Duración (en minutos)
+              </label>
+              <input
+                class="form-control"
+                type="number"
+                name="duracion_minutos"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="descripcion" class="form-label">
+                Descripción de la película
+              </label>
+              <textarea
+                class="form-control"
+                name="descripcion"
+                rows="4"
+                required></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="director" class="form-label">
+                Director de la película
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="director"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="presupuesto" class="form-label">
+                Presupuesto de la película
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="presupuesto"
+                id="presupuesto"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="" class="form-label">
+                CARGAR PÓSTER DE LA PELÍCULA
+              </label>
+              <div class="avatar-upload">
+                <div class="avatar-edit">
+                  <input
+                    type="file"
+                    name="poster_pelicula"
+                    id="imageUpload"
+                    accept=".png, .jpg, .jpeg" />
+                  <label for="imageUpload"><i class="bi bi-pen"></i></label>
+                </div>
+                <div class="avatar-preview">
+                  <div class="avatar-preview">
+                    {% set url_avatar= url_for('static', filename
+                    ='assets/img/avatar.png') %}
+                    <div
+                      id="imagePreview"
+                      style="background-image: url('{{ url_avatar }}')"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3 mt-4 text-center">
+            <button type="submit" class="btn rounded-pill btn-primary">
+              Guardar registro ahora
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block customJS %}
+<script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
+{% endblock %}
+
